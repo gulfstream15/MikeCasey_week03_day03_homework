@@ -1,10 +1,25 @@
 require('pry-byebug')
 require_relative('../models/artist')
+require_relative('../models/album')
 
-artist1 = Artist.new({ 'name' => 'Mike' })
-artist2 = Artist.new({ 'name' => 'John' })
+artist1 = Artist.new({ 'name' => 'Radiohead' })
+artist2 = Artist.new({ 'name' => 'The White Stripes' })
 artist1.save()
 artist2.save()
+
+album1 = Album.new({
+  'title'=> 'The Bends',
+  'genre'=> 'Rock',
+  'artist_id' => artist1.id
+})
+album1.save()
+
+album2 = Album.new({
+  'title'=> 'Elephant',
+  'genre'=> '1',
+  'artist_id' => artist2.id
+})
+album2.save()
 
 binding.pry
 nil
