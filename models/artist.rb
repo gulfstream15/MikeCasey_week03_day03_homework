@@ -27,6 +27,15 @@ class Artist
     @id = new_id.to_i()
   end
 
+  def Artist.all()
+    sql = "SELECT * FROM artists;" 
+    artist_hashes = SqlRunner.run(sql)
+    artist_objects = artist_hashes.map do |artist_hash| 
+      Customer.new(artist_hash) 
+    end
+    return artist_objects
+  end
+
   def Artist.delete_all()
     sql = "DELETE from artists;"
     SqlRunner.run(sql)
