@@ -42,7 +42,22 @@ class Artist
     SqlRunner.run(sql)
   end
 
-  def albums_made()
+  def Artist.find(id)
+    sql = "SELECT * FROM artists 
+    WHERE id = #{id};"
+    results = SqlRunner.run(sql)
+    artist_hash = results.first
+    artist = Artist.new(artist_hash)
+    return artist
+  end
+
+  def delete()
+    sql = "DELETE FROM artists 
+    WHERE id = #{@id};"
+    SqlRunner.run(sql)
+  end
+
+  def albums()
     sql = "SELECT * FROM albums 
     WHERE artist_id = #{@id};"
     album_hashes = SqlRunner.run(sql)

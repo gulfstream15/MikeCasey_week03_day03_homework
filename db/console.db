@@ -17,14 +17,14 @@ album1.save()
 
 album2 = Album.new({
   'title'=> 'Elephant',
-  'genre'=> '1',
+  'genre'=> 'Rock',
   'artist_id' => artist2.id
 })
 album2.save()
 
 album3 = Album.new({
   'title'=> 'OK Computer',
-  'genre'=> '1',
+  'genre'=> 'Rock',
   'artist_id' => artist1.id
 })
 album3.save()

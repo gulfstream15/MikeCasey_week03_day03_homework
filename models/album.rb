@@ -1,5 +1,6 @@
 require('pg')
 require_relative ('../db/sql_runner.rb')
+require_relative('../models/artist')
 
 class Album
 
@@ -36,6 +37,29 @@ class Album
       Album.new(album_hash) 
     end
     return album_objects
+  end
+
+  def Album.find(id)
+    sql = "SELECT * FROM albums 
+    WHERE id = #{id};"
+    results = SqlRunner.run(sql)
+    album_hash = results.first
+    album = Album.new(album_hash)
+    return album
+  end
+
+  def artist()
+    sql = "SELECT * FROM artists WHERE id = #{@artist_id};"
+    results = SqlRunner.run(sql)
+    artist_hash = results.first()
+    artist_object = Artist.new(artist_hash)
+    return artist_object
+  end
+
+  def delete()
+    sql = "DELETE FROM albums 
+    WHERE id = #{@id};"
+    SqlRunner.run(sql)
   end
 
   def Album.delete_all()
