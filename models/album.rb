@@ -1,7 +1,5 @@
 require('pg')
 require_relative ('../db/sql_runner.rb')
-require_relative('../models/artist')
-require_relative('../models/album')
 
 class Album
 
