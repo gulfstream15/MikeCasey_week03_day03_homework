@@ -1,5 +1,6 @@
 require ('pg')
 require_relative ('../db/sql_runner.rb')
+require_relative('../models/album')
 
 class Artist
 
@@ -39,6 +40,16 @@ class Artist
   def Artist.delete_all()
     sql = "DELETE from artists;"
     SqlRunner.run(sql)
+  end
+
+  def albums_made()
+    sql = "SELECT * FROM albums 
+    WHERE artist_id = #{@id};"
+    album_hashes = SqlRunner.run(sql)
+    album_objects = album_hashes.map do |album_hash| 
+      Album.new(album_hash) 
+    end
+    return album_objects
   end
 
 end

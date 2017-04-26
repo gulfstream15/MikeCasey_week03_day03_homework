@@ -4,6 +4,7 @@ require_relative('../models/album')
 
 artist1 = Artist.new({ 'name' => 'Radiohead' })
 artist2 = Artist.new({ 'name' => 'The White Stripes' })
+
 artist1.save()
 artist2.save()
 
@@ -20,6 +21,13 @@ album2 = Album.new({
   'artist_id' => artist2.id
 })
 album2.save()
+
+album3 = Album.new({
+  'title'=> 'OK Computer',
+  'genre'=> '1',
+  'artist_id' => artist1.id
+})
+album3.save()
 
 binding.pry
 nil
