@@ -31,7 +31,7 @@ class Artist
     sql = "SELECT * FROM artists;" 
     artist_hashes = SqlRunner.run(sql)
     artist_objects = artist_hashes.map do |artist_hash| 
-      Customer.new(artist_hash) 
+      Artist.new(artist_hash) 
     end
     return artist_objects
   end

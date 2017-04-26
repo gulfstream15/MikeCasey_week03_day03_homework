@@ -29,4 +29,18 @@ class Album
     @id = result[0]["id"].to_i
   end
 
+  def Album.all()
+    sql = "SELECT * FROM albums;" 
+    album_hashes = SqlRunner.run(sql)
+    album_objects = album_hashes.map do |album_hash| 
+      Album.new(album_hash) 
+    end
+    return album_objects
+  end
+
+  def Album.delete_all()
+    sql = "DELETE from albums;"
+    SqlRunner.run(sql)
+  end
+
 end
