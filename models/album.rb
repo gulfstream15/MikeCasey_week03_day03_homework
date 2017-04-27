@@ -26,8 +26,12 @@ class Album
        #{ @artist_id }
     )
     RETURNING id;"
+
     result = SqlRunner.run(sql)
-    @id = result[0]["id"].to_i
+
+    result_hash = result.first()
+    new_id = result_hash['id']
+    @id = new_id.to_i()
   end
 
   def Album.all()
@@ -65,6 +69,23 @@ class Album
   def Album.delete_all()
     sql = "DELETE from albums;"
     SqlRunner.run(sql)
+  end
+
+  def update()
+    sql = "
+    UPDATE albums SET (
+       title,
+       genre,
+       artist_id
+    ) = (
+       '#{@title}',
+       '#{@genre}', 
+        #{artist_id} 
+    )
+    WHERE id = #{@id}"
+
+    SqlRunner.run(sql)
+
   end
 
 end

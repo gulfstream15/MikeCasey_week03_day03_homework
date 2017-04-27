@@ -28,6 +28,8 @@ class Artist
     @id = new_id.to_i()
   end
 
+  # Note here can use self.all() here
+
   def Artist.all()
     sql = "SELECT * FROM artists;" 
     artist_hashes = SqlRunner.run(sql)
@@ -36,6 +38,14 @@ class Artist
     end
     return artist_objects
   end
+
+  # Alternative to map above fo Aritist.all() - a for loop
+
+  # result = []
+  # for artist in artists
+  #   new_artist = Artist.new(artist)
+  #   result << new_artist
+  # end 
 
   def Artist.delete_all()
     sql = "DELETE from artists;"
